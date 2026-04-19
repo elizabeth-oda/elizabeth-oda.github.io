@@ -11,23 +11,23 @@
   <link rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E👩‍💻%3C/text%3E%3C/svg%3E">
   <style>
-    :root {
-      --bg: #0b0d0f;
-      --text: #e6ebef;
-      --muted: #9aa4ae;
-      --card: #12161a;
-      --brand: #60a5fa;
-      --accent: #a78bfa;
-    }
+:root {
+  --bg: #200808;         /* Burnt Toast */
+  --text: #F8F4F2;       /* Soft Ivory */
+  --muted: #DBBDDC;      /* Faded Violet */
+  --card: #451616;       /* English Breakfast */
+  --brand: #F47358;      /* Peach Echo */
+  --accent: #99A5CD;     /* Bright Bluebell */
+}
 
-    :root.light {
-      --bg: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --card: #f7f7f9;
-      --brand: #2563eb;
-      --accent: #7c3aed;
-    }
+:root.light {
+  --bg: #FAF8F7;         /* Warm Ivory */
+  --text: #200808;       /* Burnt Toast */
+  --muted: #6B4C63;      /* Muted Plum */
+  --card: #F1E8F3;       /* Violet Tint */
+  --brand: #F47358;      /* Peach Echo */
+  --accent: #99A5CD;     /* Bright Bluebell */
+}
 
     * {
       box-sizing: border-box;
@@ -224,15 +224,15 @@
 
     /* Palette additions */
     :root {
-      --accent2: #34d399;
-      --accent3: #60A5FA;
-      --accent4: #34D399;
+      --accent2: #DBBDDC;
+      --accent3: #99A5CD;
+      --accent4: #F47358; 
     }
 
     :root.light {
-      --accent2: #0ea5e9;
-      --accent3: #2563EB;
-      --accent4: #10B981;
+      --accent2: #451616;
+      --accent3: #99A5CD;
+      --accent4: #F47358;
     }
 
     /* Hero wash */
@@ -247,24 +247,30 @@
       border-top: 3px solid transparent;
     }
 
-    #talks .grid .item.card:nth-child(5n+1) {
-      border-top-color: var(--brand);
+    /* Row 1 */
+    #talks .grid .item.card:nth-child(6n+1) {
+      border-top-color: var(--brand); 
     }
 
-    #talks .grid .item.card:nth-child(5n+2) {
+    #talks .grid .item.card:nth-child(6n+2) {
       border-top-color: var(--accent);
     }
 
-    #talks .grid .item.card:nth-child(5n+3) {
+    #talks .grid .item.card:nth-child(6n+3) {
       border-top-color: var(--accent2);
     }
 
-    #talks .grid .item.card:nth-child(5n+4) {
+    /* Row 2 */
+    #talks .grid .item.card:nth-child(6n+4) {
       border-top-color: var(--accent3);
     }
 
-    #talks .grid .item.card:nth-child(5n+5) {
+    #talks .grid .item.card:nth-child(6n+5) {
       border-top-color: var(--accent4);
+    }
+
+    #talks .grid .item.card:nth-child(6n+6) {
+      border-top-color: var(--text); 
     }
 
     .btn {
@@ -352,7 +358,7 @@
               Technologies</a>, building software that blends geometry, optimization, and physics simulation for
             automotive
             and aerospace manufacturing.</li>
-          <li>Co‑founder and President of <a href="https://womeninsciencejapan.com" target="_blank" rel="noopener">Women
+          <li>Co‑founder of <a href="https://womeninsciencejapan.com" target="_blank" rel="noopener">Women
               in Science
               Japan</a>, offering the ML Summer School for Scientists and mentorship programs.</li>
         </ul>
@@ -394,32 +400,28 @@
       <h2>Skills</h2>
       <article class="card">
         <p><strong>Programming</strong> Python (JAX, PyTorch, Tensorflow, Scikit‑learn, Scipy, Pandas, Numpy), Rust</p>
-        <p><strong>DevOps</strong> AWS (Certified Solutions Architect Associate SAA‑C003), GCP, Docker, Kubernetes,
-          Terraform</p>
+        <p><strong>DevOps</strong> AWS (Certified Solutions Architect Associate SAA‑C003), Docker, Kubernetes, Terraform</p>
         <p><strong>Software Development</strong> Linux, Shell (Bash/Zsh), Git, CI/CD</p>
-        <p><strong>Product Management</strong> Notion, Figma, Miro, Trello, Jira</p>
+        <p><strong>Product Management and Design</strong> Figma, Notion, Miro, Trello, Jira</p>
       </article>
     </section>
 
     <section id="experience">
       <h2>Work Experience</h2>
-
       <article class="card">
         <h3>Braid Technologies — Tokyo, Japan</h3>
         <p><strong>Technical Product Manager</strong> · July 2024 – Present</p>
         <ul>
-          <li>Lead the product development of first‑of‑its‑kind, B2B AI engineering design software for Japan’s largest
-            automotive companies.</li>
-          <li>Lead strategy and implementation of LLM‑based assistants for design report generation.</li>
-          <li>Define, organize, and delegate technical work to a 15‑person multi‑disciplinary and multi‑cultural team of
-            software developers and researchers.</li>
-          <li>Coordinate the execution of physics simulation, optimization, geometry generation, and software
-            engineering stack behind a modern UX/UI.</li>
+          <li>Lead product strategy and delivery for AI-driven engineering design software used by major automotive manufacturers in Japan.</li>
+          <li>Own roadmap prioritization, scope definition, and cross-functional execution across a 20-person team of engineers, researchers, and domain specialists.</li>
+          <li>Lead commercialization of the company’s first customer-facing product, coordinating engineering, infrastructure, and deployment efforts to transform an internal tool into a scalable multi-client platform for autonomous enterprise use.</li>
+          <li>Conduct user and expert interviews to identify customer pain points, validate roadmap priorities, and shape new product capabilities.</li>
+          <li>Translate complex technical capabilities—including physics simulation, optimization, and geometry generation—into product features and intuitive UX.</li>
         </ul>
         <p><strong>Researcher</strong> · Jan 2023 – June 2024</p>
         <ul>
-          <li>Developed domain‑specific languages for optimization procedures.</li>
-          <li>Implemented prototype physics‑informed neural network models and analysis methods.</li>
+          <li>Designed domain-specific languages and internal tools to improve optimization workflows and accelerate experimentation.</li>
+          <li>Built prototype machine learning models, including physics-informed neural networks, for advanced engineering applications.</li>
           <li>Led the research and proposal of an AI‑optimized urban agriculture system in collaboration with Florian
             Busch Architects; the project was presented at the 2023 Venice Architecture Biennale.</li>
         </ul>
@@ -432,8 +434,7 @@
         <ul>
           <li>Implemented a deep learning model to classify and measure multiple objects from point cloud data in near
             real‑time.</li>
-          <li>Helped develop and deploy a fluid simulation model and application for generating flood prediction maps in
-            Japan.</li>
+          <li>Helped build and deploy fluid simulation software used to generate flood prediction maps in Japan.</li>
           <li>Collaborated with a bilingual team (Japanese‑ and English‑speaking) to develop software for disaster
             prevention and agriculture.</li>
         </ul>
@@ -445,7 +446,7 @@
         <p><strong>Director of Research</strong> · Aug 2019 ‑ Sept 2021</p>
         <ul>
           <li>Spearheaded business development, sales, and operations of a high school research program.</li>
-          <li>Hired andmanaged a 10‑person teaching team that served more than 50 students.</li>
+          <li>Hired and managed a 10‑person teaching team that served more than 50 students.</li>
           <li>Designed from scratch andmanaged a laboratory for student research projects and group classes.</li>
           <li>Taught advanced STEM courses and individual lessons on topics including AP Biology, AP Physics 1 and 2, AP
             Chemistry, and A‑Levels Biology.</li>
