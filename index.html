@@ -5,12 +5,36 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Elizabeth Oda</title>
-  <meta name="description" content="Technical PM and Community Organizer.">
+  <meta name="description" content="Elizabeth Oda is a Technical Project Manager and Python developer working across scientific software, AI, and developer education. Based in Yokohama, working in Tokyo, Japan.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Elizabeth Oda — Scientific Software & Technical Education">
+  <meta property="og:description" content="Technical Project Manager and Python developer at the intersection of AI, science, and engineering. Explore selected projects, technical education, and research.">
+  <meta property="og:url" content="https://www.elizabethoda.com/">
+  <meta property="og:image" content="https://www.elizabethoda.com/assets/headshot_icon.jpg">
+  <meta property="og:image:alt" content="Elizabeth Oda headshot">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Elizabeth Oda — Scientific Software & Technical Education">
+  <meta name="twitter:description" content="Technical Project Manager and Python developer at the intersection of AI, science, and engineering. Explore selected projects, technical education, and research.">
+  <meta name="twitter:image" content="https://www.elizabethoda.com/assets/headshot_icon.jpg">
   <meta name="author" content="Elizabeth Oda">
   <!-- Favicon (replace with your own) -->
   <link rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E👩‍💻%3C/text%3E%3C/svg%3E">
   <style>
+    /* Local subset for the five characters in the karaoke song title. */
+    @font-face {
+      font-family: "Karaoke Japanese";
+      src: url("assets/karaoke-japanese.ttf") format("truetype");
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      unicode-range: U+30AB, U+30B7, U+30C8, U+30D6, U+30E0;
+    }
+
+    :lang(ja) {
+      font-family: "Karaoke Japanese", sans-serif;
+    }
+
 :root {
   --bg: #200808;         /* Burnt Toast */
   --text: #F8F4F2;       /* Soft Ivory */
@@ -18,6 +42,7 @@
   --card: #451616;       /* English Breakfast */
   --brand: #F47358;      /* Peach Echo */
   --accent: #99A5CD;     /* Bright Bluebell */
+  --link: #F47358;
 }
 
 :root.light {
@@ -27,6 +52,7 @@
   --card: #F1E8F3;       /* Violet Tint */
   --brand: #F47358;      /* Peach Echo */
   --accent: #99A5CD;     /* Bright Bluebell */
+  --link: #9B3323;       /* Deeper peach for readable links */
 }
 
     * {
@@ -46,12 +72,32 @@
     }
 
     a {
-      color: var(--brand);
-      text-decoration: none;
+      color: var(--link);
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     a:hover {
-      text-decoration: underline;
+      text-decoration-thickness: 2px;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--link);
+      outline-offset: 4px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 8px;
+      left: 8px;
+      padding: 8px 12px;
+      background: var(--bg);
+      z-index: 10;
+      transform: translateY(-200%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
     }
 
     .wrap {
@@ -62,6 +108,7 @@
 
     header {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 8px;
@@ -74,11 +121,14 @@
 
     .brand {
       display: flex;
+      flex: 1;
+      min-width: 0;
       align-items: center;
       gap: 12px;
     }
 
     .avatar {
+      flex-shrink: 0;
       width: 44px;
       height: 44px;
       border-radius: 50%;
@@ -88,14 +138,19 @@
     }
 
     nav a {
-      margin-left: 16px;
+      display: inline-block;
+      padding: 6px 0;
       font-weight: 600;
       color: var(--text);
-      opacity: .85;
+      text-decoration: none;
     }
 
-    nav a:hover {
-      opacity: 1;
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 20px;
+      width: 100%;
+      padding-bottom: 8px;
     }
 
     .btn {
@@ -116,10 +171,10 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 28px;
-      padding: 48px 0 12px;
-      align-items: center;
+      grid-template-columns: minmax(0, 1fr) 240px;
+      gap: 36px;
+      padding: 32px 0;
+      align-items: start;
     }
 
     .hero h1 {
@@ -132,6 +187,72 @@
     .hero p {
       color: var(--muted);
       margin: 0 0 16px;
+    }
+
+    .photo {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+    }
+
+    .portrait {
+      max-width: 240px;
+      justify-self: center;
+    }
+
+    .current-roles {
+      margin: 24px 0;
+    }
+
+    .current-roles h2 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .current-roles p {
+      margin-bottom: 8px;
+    }
+
+    .current-roles p:last-child {
+      margin-bottom: 0;
+    }
+
+    .feature-layout {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .feature-layout > * {
+      min-width: 0;
+    }
+
+    .talk-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    .talk-photos .photo {
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .talk-photos .apec-photo {
+      object-position: center 72%;
+    }
+
+    figcaption {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 8px;
     }
 
     .badges {
@@ -160,12 +281,23 @@
       margin-bottom: 16px;
     }
 
-    section {
-      padding: 24px 0;
+    section, article[id] {
+      scroll-margin-top: 160px;
     }
 
     section {
       padding: 24px 0;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      margin-top: 16px;
+    }
+
+    #projects .item p + p {
+      margin-top: 12px;
     }
 
     h2 {
@@ -176,7 +308,12 @@
     .grid {
       display: grid;
       gap: 16px;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    }
+
+    .grid > *, .hero > * {
+      min-width: 0;
+      overflow-wrap: anywhere;
     }
 
     .item h3 {
@@ -213,12 +350,32 @@
     }
 
     @media (max-width: 860px) {
-      .hero {
+      header {
+        position: static;
+      }
+
+      section, article[id] {
+        scroll-margin-top: 16px;
+      }
+
+      .wrap {
+        padding: 16px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero, .feature-layout, .talk-photos {
         grid-template-columns: 1fr;
       }
 
-      nav {
-        display: none;
+      .hero {
+        gap: 24px;
+      }
+
+      .portrait {
+        grid-row: 1;
+        max-width: 160px;
+        justify-self: start;
       }
     }
 
@@ -233,14 +390,6 @@
       --accent2: #451616;
       --accent3: #99A5CD;
       --accent4: #F47358;
-    }
-
-    /* Hero wash */
-    .hero {
-      background: linear-gradient(135deg, rgba(96, 165, 250, .14), rgba(167, 139, 250, .10));
-      border: 1px solid #20262d;
-      border-radius: 20px;
-      padding: 48px 24px;
     }
 
     #talks .grid .item.card {
@@ -276,7 +425,11 @@
     .btn {
       background: linear-gradient(135deg, var(--brand), var(--accent));
       border: none;
-      color: #fff;
+      color: #200808;
+      font: inherit;
+      text-decoration: none;
+      min-height: 44px;
+      min-width: 44px;
       box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
       transition: transform .06s ease, box-shadow .2s ease;
     }
@@ -288,13 +441,21 @@
   </style>
   <script>
     // Theme toggle (persisted)
-    const applyPref = () => {
-      const pref = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-      if (pref === 'light') document.documentElement.classList.add('light');
-      else document.documentElement.classList.remove('light');
-    };
-    document.addEventListener('DOMContentLoaded', applyPref);
-    function toggleTheme() { const isLight = document.documentElement.classList.toggle('light'); localStorage.setItem('theme', isLight ? 'light' : 'dark'); }
+    let preferredTheme;
+    try { preferredTheme = localStorage.getItem('theme'); } catch {}
+    const isLight = preferredTheme ? preferredTheme === 'light' : window.matchMedia('(prefers-color-scheme: light)').matches;
+    document.documentElement.classList.toggle('light', isLight);
+    function updateThemeControls() {
+      document.querySelectorAll('[data-theme-toggle]').forEach(button => {
+        button.setAttribute('aria-pressed', String(document.documentElement.classList.contains('light')));
+      });
+    }
+    function toggleTheme() {
+      const isLight = document.documentElement.classList.toggle('light');
+      try { localStorage.setItem('theme', isLight ? 'light' : 'dark'); } catch {}
+      updateThemeControls();
+    }
+    document.addEventListener('DOMContentLoaded', updateThemeControls);
   </script>
   <script type="application/ld+json">
   {
@@ -310,87 +471,122 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="wrap">
     <header>
       <div class="brand">
         <img class="avatar" src="assets/headshot_icon.jpg" alt="Elizabeth Oda headshot">
         <div>
           <strong>Elizabeth Oda</strong><br>
-          <span style="color:var(--muted); font-size:14px;">Technical PM · AI x Science · Tokyo</span>
+          <span style="color:var(--muted); font-size:14px;">Technical PM · Python · AI × Science</span>
         </div>
       </div>
-      <div style="display:flex; align-items:center; gap:10px;">
-        <nav aria-label="Primary">
-          <a href="#talks">Talks</a>
-          <a href="#skills">Skills</a>
-          <a href="#experience">Experience</a>
-          <a href="#publications">Publications</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <button class="btn" onclick="toggleTheme()" aria-label="Toggle theme">🌓 <span class="sr-only">Toggle
-            theme</span></button>
-      </div>
+      <button class="btn" type="button" onclick="toggleTheme()" data-theme-toggle aria-label="Light theme" aria-pressed="false">🌓</button>
+      <nav aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#talks">Talks</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#publications">Publications</a>
+        <a href="#outside-work">Outside work</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
+    <main id="main" tabindex="-1">
     <section class="hero">
       <div>
         <h1>Hi, I'm Elizabeth!</h1>
         <p>
-          AI-focused Technical Project Manager in Tokyo, Japan bridging product, research, and community. I bring a
-          rigorous experimental and systems mindset from molecular biology and agricultural science to build first-of-their-kind
-          AI products and programs.
+          I’m a Technical Project Manager and Python developer working at the intersection of AI, science, and engineering. I help turn complex technical capabilities into usable software, combining hands-on development with coordination across research and engineering teams. My background spans molecular biology, AI engineering, and scientific education.
         </p>
+        <p>Based in Yokohama, working in Tokyo, Japan.</p>
+        <div class="current-roles">
+          <h2>Current roles</h2>
+          <p>Technical Project Manager at <a href="https://braid.tech" target="_blank" rel="noopener">Braid Technologies</a>.</p>
+          <p>Co-founder and Advisor at <a href="https://womeninsciencejapan.com" target="_blank" rel="noopener">Women in Science Japan</a>. President from September 2019 through December 2025.</p>
+        </div>
         <div class="badges">
-          <span class="badge">Product leadership</span>
-          <span class="badge">Scientific ML</span>
-          <span class="badge">AI × Gender</span>
-          <span class="badge">Community building</span>
+          <span class="badge">Scientific software</span>
+          <span class="badge">Technical project management</span>
+          <span class="badge">Developer education</span>
         </div>
         <p style="margin-top:18px">
           <a class="btn" href="#contact">Get in touch →</a>
         </p>
       </div>
-      <div class="card">
-        <h2 style="margin-top:0">Current Roles</h2>
-        <ul class="list">
-          <li>Technical Project Manager at <a href="https://braid.tech" target="_blank" rel="noopener">Braid
-              Technologies</a>, building software that blends geometry, optimization, and physics simulation for
-            automotive
-            and aerospace manufacturing.</li>
-          <li>Co‑founder of <a href="https://womeninsciencejapan.com" target="_blank" rel="noopener">Women
-              in Science
-              Japan</a>, offering the ML Summer School for Scientists and mentorship programs.</li>
-        </ul>
+      <img class="photo portrait" src="assets/headshot.webp" alt="Elizabeth Oda headshot" width="1200" height="1199" fetchpriority="high">
+    </section>
+
+    <section id="projects">
+      <h2>Selected Projects &amp; Technical Education</h2>
+      <div class="grid">
+        <article class="item card feature-layout" id="summer-school">
+          <div>
+            <h3>Machine Learning Summer School for Scientists</h3>
+            <p><strong>Program leadership and coordination</strong></p>
+            <p>Founded and co-led a six-week program for 25 participants, earning a 9.6/10 satisfaction score.</p>
+            <p>Coordinated expert-led lectures, hands-on tutorials, and mentored projects covering computer vision, physics-informed machine learning, and LLMs for science.</p>
+            <p>Public lecture materials, Jupyter notebooks, and reference solutions are available in the course repository. Individual teaching materials are the work of their credited contributors.</p>
+            <div class="project-links">
+              <a href="https://www.womeninsciencejapan.com/machine-learning-program">Explore the program →</a>
+              <a href="https://github.com/elizabeth-oda/wisj-machine-learning-program">Course materials on GitHub →</a>
+            </div>
+          </div>
+          <img class="photo" src="assets/wisj_machine_learning_summer_school.webp" alt="Summer-school participants working on laptops together in a classroom" width="1200" height="904" loading="lazy" decoding="async">
+        </article>
       </div>
+      <article class="item" id="seg-bio">
+        <h3><a href="https://seg-bio.web.app/">Seg.Bio</a></h3>
+        <p>Contributed to a team-built agentic interface for 3D microscopy segmentation at the OpenAI/Tokyo AI Hackathon. The project placed second and received $10,000 in OpenAI API credits. June 2026.</p>
+      </article>
     </section>
 
     <section id="talks">
       <h2>Talks & Media</h2>
+      <div class="talk-photos">
+        <figure>
+          <img class="photo" src="assets/thinking_about_thinking_talk.webp" alt="Elizabeth presenting engineering design and simulation examples to an audience" width="1200" height="675" loading="lazy" decoding="async">
+          <figcaption>Thinking about Thinking Spring Summit · Tokyo, April 2025</figcaption>
+        </figure>
+        <figure>
+          <img class="photo apec-photo" src="assets/apec_ppwe.webp" alt="Elizabeth at the APEC Women and the Economy meeting in Peru" width="1200" height="1594" loading="lazy" decoding="async">
+          <figcaption>APEC · Lima, Peru, August 2024</figcaption>
+        </figure>
+      </div>
       <div class="grid">
         <article class="item card">
-          <h3>“Six years of Women in Science Japan: Lessons on community‑building, mentorship, and professional
-            development.”</h3>
-          <p>Kavli IPMU, The University of Tokyo, Japan. August 2025.</p>
-        </article>
-        <article class="item card">
-          <h3>”Automating Design for Advanced Engineering.”</h3>
+          <h3>Automating Design for Advanced Engineering</h3>
           <p>Thinking about Thinking Spring Summit on Open Problems for AI, Tokyo, Japan. April 2025.</p>
         </article>
         <article class="item card">
-          <h3>“Women in the AI Economy: Opportunities and Strategies for Inclusive Innovation.”</h3>
+          <h3>Crafting Command Line Tools in Rust</h3>
+          <p>Tokyo Rust Meetup, Tokyo, Japan. February 2023.</p>
+        </article>
+        <article class="item card">
+          <h3>Gender Equality in the Digital Age</h3>
+          <p>Panelist, 2nd Next Generation Forum for Gender Equality. United Nations University, Ministry of Foreign Affairs of Japan, and UN Women. November 2026.</p>
+        </article>
+        <article class="item card">
+          <h3>Six Years of Women in Science Japan: Lessons on Community-Building, Mentorship, and Professional Development</h3>
+          <p>Kavli IPMU, The University of Tokyo, Japan. August 2025.</p>
+        </article>
+        <article class="item card">
+          <h3>Women in the AI Economy: Opportunities and Strategies for Inclusive Innovation</h3>
           <p>Asia‑Pacific Economic Cooperation Senior Officials Meeting III, Lima, Peru. August 2024.</p>
         </article>
         <article class="item card">
-          <h3>“Do Vertical Landscapes Unlock a New Dimension of Urban Farming?”</h3>
+          <h3>Do Vertical Landscapes Unlock a New Dimension of Urban Farming?</h3>
           <p>Vertical Landscapes: Towards a Density of Openness, Tokyo, Japan and Venice, Italy. November 2023.</p>
         </article>
         <article class="item card">
-          <h3>“Why Women Will Lead the AI Revolution in Agriculture.”</h3>
-          <p>TEDx Tokyo International University, Tokyo, Japan. August 2023. <a href="https://www.youtube.com/watch?v=46FnOPvMXZs&t=1s">YouTube Video.</a></p>
+          <h3>Why Women Will Lead the AI Revolution in Agriculture</h3>
+          <p>TEDx Tokyo International University, Tokyo, Japan. August 2023. <a href="https://www.youtube.com/watch?v=46FnOPvMXZs&amp;t=1s">Watch the TEDx talk on YouTube</a>.</p>
         </article>
         <article class="item card">
-          <h3>“Japanese women are not encouraged to study science - what are the consequences?”</h3>
-          <p>Interview with Deutsche Welle News. July 2023. <a href="https://www.youtube.com/watch?v=hLf_u3zes5k">YouTube Video.</a></p>
+          <h3>Japanese Women Are Not Encouraged to Study Science — What Are the Consequences?</h3>
+          <p>Interview with Deutsche Welle News. July 2023. <a href="https://www.youtube.com/watch?v=hLf_u3zes5k">Watch the DW interview on YouTube</a>.</p>
         </article>
       </div>
     </section>
@@ -398,26 +594,25 @@
     <section id="skills">
       <h2>Skills</h2>
       <article class="card">
-        <p><strong>Programming</strong> Python (JAX, PyTorch, Tensorflow, Scikit‑learn, Scipy, Pandas, Numpy), Rust</p>
-        <p><strong>DevOps</strong> AWS (Certified Solutions Architect Associate SAA‑C003), Docker, Kubernetes, Terraform</p>
-        <p><strong>Software Development</strong> Linux, Shell (Bash/Zsh), Git, CI/CD</p>
-        <p><strong>Product Management and Design</strong> Figma, Notion, Miro, Trello, Jira</p>
+        <p><strong>Scientific software:</strong> Scientific Python, AI/ML, simulation and optimization workflows, benchmarking and evaluation.</p>
+        <p><strong>Technical education:</strong> Workshop curriculum, tutorials, developer documentation, and Jupyter notebooks.</p>
+        <p><strong>Technical project management:</strong> Requirements, user feedback, delivery coordination, and team leadership.</p>
+        <p><strong>Supporting tools:</strong> Rust, Git/GitHub, AWS, Docker, Kubernetes, Terraform, Linux, and CI/CD.</p>
       </article>
     </section>
 
     <section id="experience">
       <h2>Work Experience</h2>
-      <article class="card">
+      <article class="card" id="braid">
         <h3>Braid Technologies — Tokyo, Japan</h3>
         <p><strong>Technical Project Manager</strong> · July 2024 – Present</p>
         <ul>
-          <li>Lead product strategy and delivery for AI-driven engineering design software used by major automotive manufacturers in Japan.</li>
-          <li>Own roadmap prioritization, scope definition, and cross-functional execution across a 20-person team of engineers, researchers, and domain specialists.</li>
-          <li>Lead commercialization of the company’s first customer-facing product, coordinating engineering, infrastructure, and deployment efforts to transform an internal tool into a scalable multi-client platform for autonomous enterprise use.</li>
-          <li>Conduct user and expert interviews to identify customer pain points, validate roadmap priorities, and shape new product capabilities.</li>
-          <li>Translate complex technical capabilities—including physics simulation, optimization, and geometry generation—into product features and intuitive UX.</li>
+          <li>Contribute production Python to engineering design software combining optimization, physics simulation, and de novo geometry generation.</li>
+          <li>Interview mechanical engineers and domain experts, translating feedback into requirements for three customer-facing interfaces on a shared backend, with complex problem configuration taking under 10 minutes.</li>
+          <li>Build Python tooling for benchmark generation, evaluation, and Elo-style comparative ranking on realistic mechanical engineering problems.</li>
+          <li>Coordinate cross-functional delivery and requirements across 25 engineers and researchers.</li>
         </ul>
-        <p><strong>Researcher</strong> · Jan 2023 – June 2024</p>
+        <p><strong>Researcher</strong> · January 2023 – June 2024</p>
         <ul>
           <li>Designed domain-specific languages and internal tools to improve optimization workflows and accelerate experimentation.</li>
           <li>Built prototype machine learning models, including physics-informed neural networks, for advanced engineering applications.</li>
@@ -429,7 +624,7 @@
 
       <article class="card">
         <h3>Arithmer — Tokyo, Japan</h3>
-        <p><strong>AI Engineer</strong> · Mar 2022 ‑ Dec 2022</p>
+        <p><strong>AI Engineer</strong> · March 2022 – December 2022</p>
         <ul>
           <li>Implemented a deep learning model to classify and measure multiple objects from point cloud data in near
             real‑time.</li>
@@ -442,11 +637,11 @@
 
       <article class="card">
         <h3>Tokyo Academics — Tokyo, Japan</h3>
-        <p><strong>Director of Research</strong> · Aug 2019 ‑ Sept 2021</p>
+        <p><strong>Director of Research</strong> · August 2019 – September 2021</p>
         <ul>
-          <li>Spearheaded business development, sales, and operations of a high school research program.</li>
+          <li>Led business development, sales, and operations for a high school research program.</li>
           <li>Hired and managed a 10‑person teaching team that served more than 50 students.</li>
-          <li>Designed from scratch andmanaged a laboratory for student research projects and group classes.</li>
+          <li>Designed and managed a laboratory for student research projects and group classes.</li>
           <li>Taught advanced STEM courses and individual lessons on topics including AP Biology, AP Physics 1 and 2, AP
             Chemistry, and A‑Levels Biology.</li>
         </ul>
@@ -454,16 +649,16 @@
 
 
       <article class="card">
-        <h3>University of Hawai‘i at Mānoa — Honolulu, USA</h3>
-        <p><strong>Research Assistant</strong> · Aug 2016 ‑ May 2019</p>
+        <h3>University of Hawaiʻi at Mānoa — Honolulu, USA</h3>
+        <p><strong>Research Assistant</strong> · August 2016 – May 2019</p>
         <p>Researched the roles of the protein disulfide isomerase (PDI) family proteins in <i>Arabidopsis thaliana</i>.
-          Laboratory skills include:</p>
+          Laboratory work included:</p>
         <ul>
-          <li> Novel high‑throughput Arabidopsis pollen phenotyping method via modified Alexander viability staining.
+          <li>High-throughput Arabidopsis pollen phenotyping via modified Alexander viability staining.
           </li>
-          <li> Quantitative reverse transcription‑PCR (qPCR) of splice variants in wild type andmutant Arabidopsis
+          <li>Quantitative reverse transcription-PCR (qPCR) of splice variants in wild-type and mutant Arabidopsis
             samples under stress.</li>
-          <li> Fluorescent confocal microscopy of transfected Arabidopsis protoplasts to study protein co‑localization.
+          <li>Fluorescent confocal microscopy of transfected Arabidopsis protoplasts to study protein co-localization.
           </li>
         </ul>
       </article>
@@ -471,14 +666,13 @@
 
       <article class="card">
         <h3>Syngenta — Tuscola, Kekaha, and Waterloo, USA</h3>
-        <p><strong>Production and Supply Development Program Associate</strong> · June 2015 ‑ June 2016</p>
+        <p><strong>Production and Supply Development Program Associate</strong> · June 2015 – June 2016</p>
         <ul>
           <li>Designed and led several field experiments to improve management of <i>Fusarium</i> molds in maize.</li>
           <li>Developed and taught a six‑week course to improve agricultural literacy and community relations.</li>
-          <li>Responsible for field scouting and evaluating crop performance of inbred maize lines, including herbicide
-            trait evaluations.</li>
+          <li>Scouted fields and evaluated crop performance and herbicide traits of inbred maize lines.</li>
         </ul>
-        <p><strong>Production and Supply Intern</strong> · May 2014 ‑ Aug 2014</p>
+        <p><strong>Production and Supply Intern</strong> · May 2014 – August 2014</p>
         <ul>
           <li>Evaluated the efficacy and crop injury potential of an upcoming herbicide and shared findings through a
             farmer field demonstration.</li>
@@ -489,7 +683,7 @@
 
       <article class="card">
         <h3>Food and Agriculture Organization of the United Nations — Havana, Cuba</h3>
-        <p><strong>Intern</strong> · July 2013 ‑ Aug 2013</p>
+        <p><strong>Intern</strong> · July 2013 – August 2013</p>
         <ul>
           <li>Wrote a proposal in Spanish for the adoption of System of Rice Intensification (SRI), in conjunction with
             Conservation Agriculture (CA), to reduce rice production labor costs and reliance on water resources.</li>
@@ -499,24 +693,58 @@
       </article>
     </section>
 
-    <section id="publications">
-      <h2>Selected Publications</h2>
+    <section id="education">
+      <h2>Education</h2>
       <div class="grid">
         <article class="item card">
-          <h3>“The Use of Fluorescent Protein Fusions to Monitor the Unfolded Protein Response and Protein
-            Foldase‑Substrate Interactions in Plant Protoplasts.”</h3>
-          <p>Rina Carrillo, Elizabeth Feldeverd*, and David A. Christopher. In: Pérez‑Torrado, R. (ed.) The Unfolded
+          <h3>MSc in Molecular Biosciences and Bioengineering</h3>
+          <p>University of Hawaiʻi at Mānoa · Honolulu, USA</p>
+          <p>Co-lectured the Biochemistry Laboratory course for two semesters.</p>
+        </article>
+        <article class="item card">
+          <h3>BSc in International Agriculture and Rural Development</h3>
+          <p>Cornell University · Ithaca, USA</p>
+          <p>Specialization in Food Systems.</p>
+        </article>
+        <article class="item card">
+          <h3>Data Science Certificate</h3>
+          <p>Le Wagon Tokyo · Tokyo, Japan</p>
+          <p>Intensive 10-week full-time program in Python, machine learning, and data analysis.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>Selected Publications</h2>
+      <p>Published as Elizabeth Feldeverd.</p>
+      <div class="grid">
+        <article class="item card">
+          <h3><a href="https://doi.org/10.1007/978-1-0716-1732-8_5">The Use of Fluorescent Protein Fusions to Monitor the Unfolded Protein Response and Protein
+            Foldase-Substrate Interactions in Plant Protoplasts</a></h3>
+          <p>Rina Carrillo, Elizabeth Feldeverd, and David A. Christopher. In: Pérez‑Torrado, R. (ed.) The Unfolded
             Protein Response. Methods in Molecular Biology, vol. 2378. Humana, New York, NY, 2022.</p>
         </article>
         <article class="item card">
-          <h3>“The Arabidopsis protein disulfide isomerase subfamily m isoform, PDI9, localizes to the endoplasmic
-            reticulum and influences pollen viability and proper formation of the pollen exine during heat stress.”</h3>
-          <p>Elizabeth Feldeverd*, Brad W. Porter, Christen Y.L. Yuen, Kaela Iwai, Rina Carrillo, Tyler Smith, Cheyenne
+          <h3><a href="https://doi.org/10.3389/fpls.2020.610052">The Arabidopsis Protein Disulfide Isomerase Subfamily M Isoform, PDI9, Localizes to the Endoplasmic
+            Reticulum and Influences Pollen Viability and Proper Formation of the Pollen Exine During Heat Stress</a></h3>
+          <p>Elizabeth Feldeverd, Brad W. Porter, Christen Y. L. Yuen, Kaela Iwai, Rina Carrillo, Tyler Smith, Cheyenne
             Barela, Katherine Wong, Pengfei Wang, Byung‑Ho Kang, Kristie Matsumoto, David A. Christopher. Frontiers in
             Plant Science, 11:610052, 2020.</p>
         </article>
       </div>
-      <p class="muted" style="color:var(--muted); font-size:14px;">*Feldeverd is maiden name.</p>
+    </section>
+
+    <section id="outside-work">
+      <div class="feature-layout">
+        <div>
+          <h2>Outside work</h2>
+          <p>Outside work, I am a two-time marathon finisher (training for my third!), hiker, and pianist. My best karaoke song is <span lang="ja">カブトムシ</span> by aiko.</p>
+        </div>
+        <figure>
+          <img class="photo" src="assets/hiking.webp" alt="Elizabeth hiking with a forested mountain and patches of snow behind her" width="1200" height="900" loading="lazy" decoding="async">
+          <figcaption>Mt Ellinor, USA</figcaption>
+        </figure>
+      </div>
     </section>
 
     <section id="contact">
@@ -533,8 +761,10 @@
       </div>
     </section>
 
+    </main>
+
     <footer>
-      <div>© <span id="year"></span> Elizabeth Oda · <a href="#" onclick="toggleTheme(); return false;">Toggle theme</a>
+      <div>© <span id="year"></span> Elizabeth Oda · <button class="btn" type="button" onclick="toggleTheme()" data-theme-toggle aria-pressed="false">Light theme</button>
       </div>
     </footer>
   </div>
